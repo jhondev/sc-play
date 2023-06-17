@@ -5,9 +5,9 @@
 ////////////////////////////////////////////////////
 
 // Init:                                 1
-// Endpoints:                            0
+// Endpoints:                            4
 // Async Callback (empty):               1
-// Total number of exported functions:   2
+// Total number of exported functions:   6
 
 #![no_std]
 #![feature(lang_items)]
@@ -18,6 +18,10 @@ multiversx_sc_wasm_adapter::panic_handler!();
 multiversx_sc_wasm_adapter::endpoints! {
     contract
     (
+        stake
+        unstake
+        getStakingPosition
+        getStakedAddresses
     )
 }
 
