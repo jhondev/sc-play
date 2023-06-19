@@ -8,6 +8,6 @@ fn world() -> ScenarioWorld {
 }
 
 #[test]
-fn empty_rs() {
-    multiversx_sc_scenario::run_rs("scenarios/empty.scen.json", world());
+fn staking_rs() {
+    multiversx_sc_scenario::run_rs("scenarios/staking.scen.json", world());
 }

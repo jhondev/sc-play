@@ -13,7 +13,7 @@
                 {
                     "creatorAddress": "address:owner",
                     "creatorNonce": "1",
-                    "newAddress": "sc:empty"
+                    "newAddress": "sc:staking"
                 }
             ]
         },

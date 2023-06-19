@@ -19,21 +19,6 @@ pub trait StakingContract {
         self.staked_addresses().insert(caller);
     }
 
-    // #[endpoint]
-    // fn unstake(&self) {
-    //     let caller = self.blockchain().get_caller();
-    //     let stake_mapper = self.staking_position(&caller);
-
-    //     let caller_stake = stake_mapper.get();
-    //     if caller_stake == 0 {
-    //         return;
-    //     }
-
-    //     self.staked_address().swap_remove(&caller);
-    //     stake_mapper.clear();
-
-    //     self.send().direct_egld(&caller, &caller_stake)
-    // }
     #[endpoint]
     fn unstake(&self, opt_unstake_amount: OptionalValue<BigUint>) {
         let caller = self.blockchain().get_caller();
