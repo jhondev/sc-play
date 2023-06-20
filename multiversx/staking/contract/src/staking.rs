@@ -1,6 +1,21 @@
 #![no_std]
 
 multiversx_sc::imports!();
+multiversx_sc::derive_imports!();
+
+// Rewards are distributed based on a global speed.
+// We can use block production as speed reference (recommended approach)
+// each block is created every 6 seconds
+pub const BLOCKS_IN_YEAR: u64 = 60 * 60 * 24 * 365 / 6;
+
+// Users earn rewards in proportion to their stake.
+pub const REWARDS_PERCENTAGE: u64 = 10_000;
+
+#[derive(TypeAbi, TopEncode, TopDecode, PartialEq, Debug)]
+pub struct StakingPosition<M: ManagedTypeApi> {
+    pub stake_amount: BigUint<M>,
+    pub last_action_block: u64,
+}
 
 #[multiversx_sc::contract]
 pub trait StakingContract {
@@ -13,10 +28,23 @@ pub trait StakingContract {
         let payment = self.call_value().egld_value().clone_value();
         require!(payment > 0, "Must pay more than 0"); // if !condition { signal_error(msg) }
 
-        let caller = self.blockchain().get_caller();
-        self.staking_position(&caller)
-            .update(|current| *current += payment);
-        self.staked_addresses().insert(caller);
+        let stake_mapper = self.staking_position(&caller);
+
+        let new_user = self.staked_addresses().insert(caller.clone());
+        let mut staking_pos = if !new_user {
+            stake_mapper.get()
+        } else {
+            let current_block = self.blockchain().get_block_epoch();
+            StakingPosition {
+                stake_amount: BigUint::zero(),
+                last_action_block: current_block,
+            }
+        };
+
+        self.claim_rewards_for_user(&caller, &mut staking_pos);
+        staking_pos.stake_amount += payment_amount;
+
+        stake_mapper.set(&staking_pos);
     }
 
     #[endpoint]
