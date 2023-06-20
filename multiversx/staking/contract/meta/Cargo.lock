@@ -214,18 +214,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2382f75942f4b3be3690fe4f86365e9c853c1587d6ee58212cebf6e2a9ccd101"
 
 [[package]]
-name = "contract"
-version = "0.0.0"
-dependencies = [
- "multiversx-sc",
-]
-
-[[package]]
 name = "contract-meta"
 version = "0.0.0"
 dependencies = [
- "contract",
  "multiversx-sc-meta",
+ "staking-contract",
 ]
 
 [[package]]
@@ -679,6 +672,13 @@ name = "smallvec"
 version = "1.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a507befe795404456341dfab10cef66ead4c041f62b8b11bbb92bffe5d0953e0"
+
+[[package]]
+name = "staking-contract"
+version = "0.0.0"
+dependencies = [
+ "multiversx-sc",
+]
 
 [[package]]
 name = "strsim"

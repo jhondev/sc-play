@@ -7,7 +7,7 @@ authors = [ "you",]
 
 [dev-dependencies]
 
-[dependencies.contract]
+[dependencies.staking-contract]
 path = ".."
 
 [dependencies.multiversx-sc-meta]

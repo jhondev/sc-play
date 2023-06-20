@@ -20,7 +20,7 @@ lto = true
 debug = false
 panic = "abort"
 
-[dependencies.contract]
+[dependencies.staking-contract]
 path = ".."
 
 [dependencies.multiversx-sc-wasm-adapter]

@@ -1,12 +1,12 @@
 [package]
-name = "contract"
+name = "staking-contract"
 version = "0.0.0"
 authors = [ "you",]
 edition = "2018"
 publish = false
 
 [lib]
-path = "src/staking.rs"
+path = "src/staking-contract.rs"
 
 [dev-dependencies]
 num-bigint = "0.4.2"
