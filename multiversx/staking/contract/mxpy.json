@@ -1,0 +1,28 @@
+{
+  "configurations": {
+      "default": {
+          "proxy": "https://devnet-api.multiversx.com",
+          "chainID": "D"
+      }
+  },
+  "contract":{
+      "deploy":{
+          "verbose": true,
+          "bytecode": "output/staking-contract.wasm",
+          "recall-nonce": true,
+          "pem": "~/dev/multiversx/wallet/wallet-owner.pem",
+          "gas-limit": 59999999,          
+          "send": true,
+          "outfile": "deploy-devnet.interaction.json"
+      },
+      "upgrade":{
+        "verbose": true,
+        "bytecode": "output/staking-contract.wasm",
+        "recall-nonce": true,
+        "pem": "~/dev/multiversx/wallet/wallet-owner.pem",
+        "gas-limit": 59999999,
+        "send": true,
+        "outfile": "upgrade-devnet.interaction.json"
+    }
+   }
+}
